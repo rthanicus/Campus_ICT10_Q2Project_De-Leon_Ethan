@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arasaka Corporation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- My own design -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PyScript (this runs main.py inside the browser) -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+</head>
+
+<body>
+
+    <div class="scanlines"></div>
+
+    <!-- SCREEN 1: CLICK ANYTHING TO ENTER -->
+    <div id="screen-start" class="screen start-screen" py-click="enter_site">
+        <div class="kanji">荒坂</div>
+        <h1 id="logo" class="logo">ARASAKA</h1>
+        <p class="blink">CLICK ANYTHING TO ENTER</p>
+    </div>
+
+    <!-- SCREEN 2: MAIN MENU -->
+    <div id="screen-menu" class="screen d-none">
+        <div class="container py-5">
+            <h2 class="page-title text-center mb-5">ARASAKA CORPORATION</h2>
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <button class="menu-card" py-click="go_elements">
+                        <span class="menu-icon">⬡</span>
+                        <span class="menu-name">Element Checker</span>
+                        <span class="menu-desc">Check Arasaka products</span>
+                    </button>
+                </div>
+                <div class="col-12 col-md-4">
+                    <button class="menu-card" py-click="go_members">
+                        <span class="menu-icon">◈</span>
+                        <span class="menu-name">Arasaka Members</span>
+                        <span class="menu-desc">Check the member list</span>
+                    </button>
+                </div>
+                <div class="col-12 col-md-4">
+                    <button class="menu-card" py-click="go_creator">
+                        <span class="menu-icon">◉</span>
+                        <span class="menu-name">Meet the Creator</span>
+                        <span class="menu-desc">The one who made this site</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: ARASAKA MEMBERS -->
+    <div id="screen-members" class="screen d-none">
+        <div class="container py-5 sub-page">
+            <h2 class="page-title mb-4">Arasaka Members</h2>
+            <p>Type a name to see if the person is in the Arasaka list.</p>
+
+            <div class="examples">
+                <h4>Examples you can try</h4>
+                <p class="mb-2">Type the first name in the first box and the last name in the second box.</p>
+                <ul>
+                    <li>Saburo Arasaka</li>
+                    <li>Yorinobu Arasaka</li>
+                    <li>Hanako Arasaka</li>
+                    <li>Kei Arasaka</li>
+                    <li>Michiko Arasaka</li>
+                    <li>Adam Smasher</li>
+                    <li>Goro Takemura</li>
+                    <li>Sandayu Oda</li>
+                    <li>Anders Hellman</li>
+                    <li>Arthur Jenkins</li>
+                    <li>Susan Abernathy</li>
+                </ul>
+                <p class="mb-0">Any other name will say it is not in the list.</p>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                    <input type="text" id="first_name" class="form-control arasaka-input" placeholder="First name">
+                </div>
+                <div class="col-12 col-md-6">
+                    <input type="text" id="last_name" class="form-control arasaka-input" placeholder="Last name">
+                </div>
+            </div>
+
+            <button class="btn arasaka-btn" py-click="check_member">Check</button>
+            <button class="btn arasaka-btn-back" py-click="go_menu">Back to menu</button>
+
+            <p id="member_result" class="result"></p>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: ELEMENT CHECKER -->
+    <div id="screen-elements" class="screen d-none">
+        <div class="container py-5 sub-page">
+            <h2 class="page-title mb-4">Element Checker</h2>
+            <p>Type the name of a product to see if Arasaka made it.</p>
+
+            <div class="examples">
+                <h4>Examples you can try</h4>
+                <ul>
+                    <li>Relic</li>
+                    <li>Mikoshi</li>
+                    <li>Shingen</li>
+                    <li>Yukimura</li>
+                </ul>
+                <p class="mb-0">Any other product will say it is not an Arasaka product.</p>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" id="product_name" class="form-control arasaka-input" placeholder="Product name">
+            </div>
+
+            <button class="btn arasaka-btn" py-click="check_product">Check</button>
+            <button class="btn arasaka-btn-back" py-click="go_menu">Back to menu</button>
+
+            <p id="product_result" class="result"></p>
+        </div>
+    </div>
+
+    <!-- SCREEN 5: MEET THE CREATOR -->
+    <div id="screen-creator" class="screen d-none">
+        <div class="container py-5 sub-page">
+            <h2 class="page-title mb-4">Meet the Creator</h2>
+
+            <div class="creator-box">
+                <h3 class="creator-name">Ethan De Leon</h3>
+
+                <h4>Interests</h4>
+                <ul>
+                    <li>Cyberpunk 2077</li>
+                    <li>Jojo's Bizarre Adventure</li>
+                    <li>Call of Duty</li>
+                </ul>
+
+                <h4>Hobbies</h4>
+                <ul>
+                    <li>Swimming</li>
+                    <li>Boxing</li>
+                    <li>Building stuff</li>
+                </ul>
+
+                <p class="creator-quote">"I'm the number one Adam Smasher of Evil supporter in the world."</p>
+            </div>
+
+            <button class="btn arasaka-btn-back mt-4" py-click="go_menu">Back to menu</button>
+        </div>
+    </div>
+
+    <!-- Python file (the functions) -->
+    <script type="py" src="./main.py"></script>
+    <!-- JavaScript (only for design effects) -->
+    <script src="design.js"></script>
+</body>
+
+</html>

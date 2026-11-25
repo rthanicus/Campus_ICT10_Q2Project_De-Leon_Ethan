@@ -1,0 +1,383 @@
+/* Arasaka colors */
+:root {
+    --red: #d4001a;
+    --dark-red: #7a000f;
+    --black: #050505;
+    --panel: #120708;
+    --white: #f2f2f2;
+    --gold: #ffcf4a;
+}
+
+body {
+    background-color: var(--black);
+    /* dark red overlay on top of the image so the text is still readable */
+    background-image:
+        linear-gradient(rgba(5, 5, 5, 0.75), rgba(40, 0, 6, 0.85)),
+        url("arasaka.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--white);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+.menu-name,
+.logo {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* moving lines on the screen (design only) */
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 4px);
+    z-index: 50;
+}
+
+/* ---------- START SCREEN ---------- */
+.start-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+}
+
+.kanji {
+    font-size: clamp(6rem, 22vw, 14rem);
+    color: var(--red);
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(212, 0, 26, 0.6);
+}
+
+.logo {
+    font-weight: 800;
+    letter-spacing: 0.4em;
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    margin: 0.5rem 0 2rem;
+}
+
+.logo.glitch {
+    color: var(--red);
+    transform: translateX(6px);
+    text-shadow: -4px 0 #00e5ff, 4px 0 var(--red);
+}
+
+.blink {
+    letter-spacing: 0.3em;
+    color: var(--red);
+    animation: blink 1.4s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* ---------- MENU ---------- */
+.page-title {
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    border-left: 8px solid var(--red);
+    padding-left: 1rem;
+}
+
+.menu-card {
+    width: 100%;
+    min-height: 300px;
+    background: rgba(18, 7, 8, 0.8);
+    border: 2px solid var(--dark-red);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 2rem 1rem;
+    clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+    transition: all 0.25s;
+}
+
+.menu-card:hover,
+.menu-card:focus-visible {
+    background: var(--red);
+    border-color: var(--red);
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(212, 0, 26, 0.7);
+    outline: none;
+}
+
+.menu-icon {
+    font-size: 4rem;
+    color: var(--red);
+    transition: color 0.25s;
+}
+
+.menu-card:hover .menu-icon,
+.menu-card:focus-visible .menu-icon {
+    color: var(--white);
+}
+
+.menu-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.menu-desc {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* ---------- SUB PAGES ---------- */
+.sub-page {
+    max-width: 800px;
+}
+
+.arasaka-input {
+    background: rgba(18, 7, 8, 0.8);
+    color: var(--white);
+    border: 2px solid var(--dark-red);
+    border-radius: 0;
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+}
+
+.arasaka-input:focus {
+    background: rgba(18, 7, 8, 0.8);
+    color: var(--white);
+    border-color: var(--red);
+    box-shadow: 0 0 12px rgba(212, 0, 26, 0.6);
+}
+
+.arasaka-btn {
+    background: var(--red);
+    color: var(--white);
+    border-radius: 0;
+    font-family: 'Orbitron', sans-serif;
+    padding: 0.7rem 2rem;
+    margin-right: 0.5rem;
+}
+
+.arasaka-btn:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+.arasaka-btn-back {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--red);
+    border-radius: 0;
+    font-family: 'Orbitron', sans-serif;
+    padding: 0.6rem 1.5rem;
+}
+
+.arasaka-btn-back:hover {
+    background: var(--red);
+    color: var(--white);
+}
+
+/* ---------- RESULTS ---------- */
+.result {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.result:empty {
+    display: none;
+}
+
+.result.good {
+    color: #39ff88;
+    border-left: 6px solid #39ff88;
+    padding-left: 1rem;
+}
+
+.result.bad {
+    color: var(--red);
+    border-left: 6px solid var(--red);
+    padding-left: 1rem;
+}
+
+/* special for Saburo Arasaka */
+.result.emperor {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: var(--gold);
+    background: linear-gradient(135deg, #3a0008, #120708);
+    border: 3px solid var(--gold);
+    padding: 2rem 1rem;
+    font-size: 1.6rem;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 207, 74, 0.4);
+    }
+
+    to {
+        box-shadow: 0 0 45px rgba(255, 207, 74, 0.95);
+    }
+}
+
+/* ---------- CREATOR ---------- */
+.creator-box {
+    background: rgba(18, 7, 8, 0.8);
+    border: 2px solid var(--dark-red);
+    border-top: 8px solid var(--red);
+    padding: 2rem;
+}
+
+.creator-name {
+    color: var(--red);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.creator-box h4 {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+}
+
+.creator-quote {
+    margin-top: 1.5rem;
+    font-style: italic;
+    border-left: 6px solid var(--red);
+    padding-left: 1rem;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+/* every screen fades in and slides up when it shows */
+.screen:not(.d-none) {
+    animation: screenIn 0.6s ease;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* the 3 menu cards pop in one by one */
+.menu-card {
+    animation: cardIn 0.6s ease backwards;
+}
+
+.col-md-4:nth-child(1) .menu-card {
+    animation-delay: 0.1s;
+}
+
+.col-md-4:nth-child(2) .menu-card {
+    animation-delay: 0.3s;
+}
+
+.col-md-4:nth-child(3) .menu-card {
+    animation-delay: 0.5s;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* the kanji glows like a heartbeat */
+.kanji {
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(212, 0, 26, 0.4);
+    }
+
+    50% {
+        text-shadow: 0 0 70px rgba(212, 0, 26, 1);
+    }
+}
+
+/* a red scanner line moving down the screen */
+.scanlines {
+    overflow: hidden;
+}
+
+.scanlines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(transparent, rgba(212, 0, 26, 0.15), transparent);
+    animation: scan 6s linear infinite;
+}
+
+@keyframes scan {
+    from {
+        top: -120px;
+    }
+
+    to {
+        top: 100%;
+    }
+}
+
+/* red light that follows the mouse (made in design.js) */
+.mouse-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    margin: -200px 0 0 -200px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(212, 0, 26, 0.18), transparent 70%);
+    z-index: 40;
+}
+
+/* ---------- EXAMPLES BOX ---------- */
+.examples {
+    background: rgba(18, 7, 8, 0.8);
+    border: 2px solid var(--dark-red);
+    border-left: 8px solid var(--red);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.examples h4 {
+    font-size: 1.1rem;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+}
+
+.examples ul {
+    columns: 2;
+    margin-bottom:0.8rem;
+}
